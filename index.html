@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartStock AI | Advanced Inventory Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dark-mode">
+    <!-- Login Overlay -->
+    <div id="login-screen" class="login-overlay">
+        <div class="login-card">
+            <div class="logo" style="justify-content:center; margin-bottom:32px;">
+                <div class="logo-icon">RS</div>
+                <span>RetailSmart <small>B2C</small></span>
+            </div>
+            <h2 style="text-align:center; margin-bottom:24px;">Store Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Employee ID</label>
+                    <input type="text" id="empId" placeholder="e.g. 1001" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" value="••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:16px;">Access Store</button>
+            </form>
+            <p style="font-size:12px; color:var(--text-secondary); text-align:center; margin-top:24px;">Smart Inventory
+                MVP v1.0</p>
+        </div>
+    </div>
+
+    <div class="app-container" id="appMain" style="display:none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">RS</div>
+                <span>RetailSmart <small>B2C</small></span>
+            </div>
+            <nav style="overflow-y: auto;">
+                <button class="nav-item active" data-view="dashboard">
+                    <span class="icon">📊</span> Store Overview
+                </button>
+                <button class="nav-item" data-view="inventory">
+                    <span class="icon">🛒</span> Shelf Inventory
+                </button>
+                <button class="nav-item" data-view="trends">
+                    <span class="icon">📈</span> Consumer Trends
+                </button>
+                <button class="nav-item" data-view="waste">
+                    <span class="icon">♻️</span> Shrinkage & Loss
+                </button>
+                <button class="nav-item" data-view="reports">
+                    <span class="icon">📋</span> Daily Reports
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">GU</div>
+                    <div class="user-info">
+                        <span class="user-name">Galit Uve</span>
+                        <span class="user-role">Branch Manager</span>
+                    </div>
+                </div>
+                <button class="btn-logout" id="logoutBtn"
+                    style="margin-top:16px; background:transparent; border:none; color:var(--text-secondary); cursor:pointer; font-size:12px;">🚪
+                    Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-nav">
+                <div class="header-left" style="display:flex; align-items:center; gap:24px;">
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Search product, barcode or SKU...">
+                    </div>
+                    <select class="branch-selector" id="branchSelect"
+                        style="background: var(--card-bg); color: var(--text-primary); border: 1px solid var(--border); padding: 8px 12px; border-radius: 8px; font-size: 13px; outline: none;">
+                        <option value="1">Tel Aviv - Main Branch</option>
+                        <option value="2">Rishon LeZion</option>
+                        <option value="3">Haifa - North</option>
+                    </select>
+                </div>
+                <div class="top-actions">
+                    <button class="btn-icon notification-btn" title="Notifications">
+                        🔔 <span class="badge">5</span>
+                    </button>
+                    <button class="btn btn-primary" id="openPosBtn">+ New POS Entry</button>
+                </div>
+            </header>
+
+            <div id="view-container">
+                <!-- Views will be injected here by JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modal-title">Action</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
